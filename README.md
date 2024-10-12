@@ -1,4 +1,4 @@
-# MySQL Projects Repository <img src="![pngwing com](https://github.com/user-attachments/assets/27062448-3b4f-4ae7-94b1-2ebc2dfb5b80)" width="300" style="float: left; margin-right: 15px;">
+# MySQL Projects Repository <img src="images/my-image.png" alt="Description of image" width="300" style="float: left; margin-right: 15px;">
 
 ## Overview
 Welcome to the MySQL Projects Repository! This repository houses a collection of MySQL database projects designed to illustrate various database design principles and techniques. Each project serves as a practical example of how to implement MySQL for different real-world applications.
