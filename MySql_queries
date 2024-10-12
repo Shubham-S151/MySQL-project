@@ -1,0 +1,22 @@
+# Section A: Level 1 Questions
+#1.	Read the data from all the tables
+
+select * from supplier;
+select * from product;
+select * from orderitem;
+select * from order;
+select * from customer;
+
+#2.	Find the country-wise count of customers.
+
+select country,count(id) as count_cust from customer group by country order by count_cust desc;
+
+#3.	Display the products that are not discontinued. 
+
+select * from product where isdisconinued='1';
+
+#4.	Display the list of companies along with the product name that they are supplying. 
+
+select s.companyname,p.productname from supplier s join product p on s.id=p.supplierid;
+
+#5.	Display customer information about who stays in 'Mexico'
