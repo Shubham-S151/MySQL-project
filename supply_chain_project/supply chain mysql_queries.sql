@@ -138,3 +138,42 @@ select * from customer where country='Mexico';
   where c1.id<>c2.id
   order by c1.country;
 
+#Section D: Level 4 Questions:
+  
+#1.	The company sells the products at different discount rates. Refer actual product price in the product table and the selling price 
+#in the order item table. Write a query to find out the total amount saved in each order then 
+#display the orders from highest to lowest amount saved. 
+  select oi.orderid,sum((p.unitprice-oi.unitprice)*oi.quantity) as total_amount_saved  
+  from product p join orderitem oi on p.id=oi.productid 
+  group by oi.orderid order by total_amount_saved desc;
+
+#2.	Mr. Kavin wants to become a supplier. He got the database of "Richard's Supply" for reference. Help him to pick: 
+#a.	List a few products that he should choose based on demand.
+#b.	Who will be the competitors for him for the products suggested in the above questions? 
+  select distinct s.contactname, p.productname
+  from orderitem oi join product p on p.id=oi.productid 
+  join supplier s on p.supplierid=s.id
+  group by p.id,p.productname,s.contactname having sum(oi.quantity)>1000
+  order by s.contactname;
+
+#3.	Create a combined list to display customers' and suppliers' details considering the following criteria 
+#a.	Both customer and supplier belong to the same country 
+#b.	Customers who do not have a supplier in their country
+#c.	A supplier who does not have customers in their country 
+  select c.*,s.* from customer c
+  join supplier s on s.country=c.country
+  union all
+  select c.*,s.* from customer c
+  left join supplier s on s.country=c.country 
+  where s.country is null
+  union all 
+  select * from customer c
+  right join supplier s on s.country=c.country 
+  where c.country is null;
+
+#4.	Find out for which products, the UK is dependent on other countries for the supply. 
+# List the countries which are supplying these products in the same list.
+  select distinct c.country as UK,s.country as import_from,p.productname 
+  from customer c join supplier s on s.country<>c.country
+  join product p on p.supplierid=s.id
+  where c.country='uk';
